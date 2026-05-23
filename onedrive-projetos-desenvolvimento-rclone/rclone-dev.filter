@@ -1,0 +1,127 @@
+# Rclone filter for C:\Dev -> OneDrive Dev
+# Default behavior is include unless a rule below excludes it.
+
+# Operational sync files
+# Keep the sync scripts/config backed up, but do not mirror logs or transient auth/lock files.
+- /.sync/logs/**
+- /.sync/auth/**
+- /.sync/*.lock
++ /.sync/**
+
+# Root-level non-workspace/system folders that should not be mirrored from C:\Dev
+- /AppData/**
+- /Microsoft/**
+- /Windows/**
+- /nvim-data/**
+- /.claude/**
+- /.claude.json
+- /.claude.json.*
+- **/.claude/**
+
+# Secrets, credentials, local machine state, and private runtime configuration
++ **/.env.example
++ **/.env.sample
++ **/.env.template
+- **/.env
+- **/.env.*
+- **/.envrc
+- **/*credential*
+- **/*credentials*
+- **/*secret*
+- **/*secrets*
+- **/*token*
+- **/*auth*
+- **/id_rsa
+- **/id_ed25519
+- **/*.pem
+- **/*.key
+- **/*.pfx
+
+# VCS metadata
+- **/.git/**
+- **/.hg/**
+- **/.svn/**
+
+# Dependency/vendor directories
+- **/node_modules/**
+- **/.venv/**
+- **/venv/**
+- **/env/**
+- **/.tox/**
+- **/.vendor/**
+- **/vendor/**
+
+# Python/tool caches
+- **/__pycache__/**
+- **/.pytest_cache/**
+- **/.ruff_cache/**
+- **/.mypy_cache/**
+- **/.uv-cache/**
+- **/.coverage
+- **/.coverage.*
+
+# Build outputs, generated sites, and framework caches
+- **/dist/**
+- **/build/**
+- **/target/**
+- **/bin/**
+- **/obj/**
+- **/public/**
+- **/resources/_gen/**
+- **/pagefind/**
+- **/graphify-out/**
+- **/.hugo_build.lock
+- **/.next/**
+- **/.turbo/**
+- **/.cache/**
+- **/coverage/**
+- **/out/**
+- **/.tmp/**
+- **/tmp/**
+- **/rescue-usb-build/work/**
+- **/.svelte-kit/**
+- **/.nuxt/**
+- **/.output/**
+- **/.docusaurus/**
+- **/.vite/**
+- **/.parcel-cache/**
+- **/.angular/**
+- **/.astro/**
+- **/.vercel/**
+- **/.netlify/**
+- **/.wrangler/**
+- **/storybook-static/**
+- **/.nyc_output/**
+- **/__pypackages__/**
+- **/site-packages/**
+
+# Logs, temporary files, dumps, and local OS/editor noise
+- **/*.log
+- **/*.tmp
+- **/*.temp
+- **/*.bak
+- **/*.swp
+- **/*.swo
+- **/*.dmp
+- **/*.dump
+- /*.7z
+- /*.rar
+- /*.zip
+- /*.tar
+- /*.tgz
+- /*.gz
+- **/*.7z
+- **/*.rar
+- **/*.zip
+- **/*.tar
+- **/*.tgz
+- **/*.gz
+- **/*.safetensors
+- **/*.onnx
+- **/*.gguf
+- **/*.pt
+- **/*.pth
+- **/*.ckpt
+- **/Thumbs.db
+- **/desktop.ini
+- **/.DS_Store
